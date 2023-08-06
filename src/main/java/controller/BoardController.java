@@ -12,11 +12,10 @@ public class BoardController {
 
     @GetMapping("/{board_name}/write")
     public String writeControl(@PathVariable("board_name") String boardName){
-
-        return "tuitest";
+        return "post_write";
     }
 
-    @GetMapping("{board_name}/{post_number}")
+    @GetMapping("/{board_name}/{post_number}")
     public String viewPost(@PathVariable("board_name")String boardName, @PathVariable("post_number") int postNumber){
         return "post_view";
     }

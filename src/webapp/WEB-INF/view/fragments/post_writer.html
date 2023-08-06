@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head> </head>
+  <body>
+    <div id="post_writer" th:fragment="writerFragment">
+      <hr class="divider" />
+      <h1 id="write">글쓰기</h1>
+      <hr class="divider" />
+      <div class="category_area"></div>
+      <div id="title_area">
+        <div id="title_label_area">
+          <h1 id="title_label">제목</h1>
+        </div>
+        <input id="title_input" type="text" />
+      </div>
+      <div id="content_editor"></div>
+      <!--WYSIWYG editor -->
+      <div id="image_preview_select_area">
+        <input id="image_preview_toggle" type="checkbox" />
+        <label for="image_preview_toggle">
+          이미지 미리보기를 숨기시겠습니까?
+        </label>
+      </div>
+      <div id="submit_button_area">
+        <button id="submit_button" type="button">작성</button>
+      </div>
+
+      <!-- TOAST UI Editor Settings-->
+
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/codemirror.min.css"
+      />
+      <link
+        rel="stylesheet"
+        href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css"
+      />
+      <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+
+      <script>
+        const editor = new toastui.Editor({
+          el: document.querySelector("#content_editor"),
+          previewStyle: "vertical",
+          height: "400px",
+          initialEditType: "wysiwyg",
+          initialValue: "test initial content",
+          hideModeSwitch: true,
+        });
+      </script>
+      <style>
+        #post_writer {
+          max-width: 100%;
+          height: auto;
+        }
+        #post_writer #title_area {
+          display: flex;
+          height: 32px;
+        }
+        #post_writer #title_label_area {
+          margin: 0;
+          border: 1px solid grey;
+          background-color: #e6e6e6;
+          align-items: center;
+          justify-content: space-around;
+          width: 40px;
+          display: flex;
+          border-radius: 0;
+          margin: 0;
+        }
+        #post_writer #title_label {
+          text-align: center;
+          font-weight: 400;
+          font-size: 14px;
+        }
+        #post_writer #title_input {
+          width: auto;
+          border: 1px solid grey;
+          border-radius: 0;
+          margin: 0;
+          flex: 1 0 auto;
+        }
+        #post_writer #write {
+          font-size: 18px;
+          font-weight: 400;
+        }
+        #post_writer #content_editor {
+          margin: 12px 0;
+        }
+        #post_writer #submit_button_area {
+          height: 40px;
+          width: auto;
+          align-items: end;
+          display: flex;
+          justify-content: flex-end;
+        }
+        #post_writer #submit_button {
+          font-size: 16px;
+          height: auto;
+          width: 48px;
+          height: 100%;
+          background-color: white;
+          border: 1px solid #aaaaaa;
+        }
+      </style>
+
+    </div>
+  </body>
+</html>
+
