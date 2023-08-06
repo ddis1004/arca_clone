@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head> </head>
+
+  <body>
+    <div class="fragment_wrapper">
+      <div class="post" th:fragment="postFragment">
+        <div class="post_wrapper">
+          <div class="title_wrapper">
+            <hr class="divider" />
+            <h4 class="title">TITLE 타이틀</h4>
+            <hr class="divider" />
+          </div>
+          <div class="post_info_wrapper">
+            <div class="post_info_left">
+              <h5 class="user_nickname">유저의 닉네임</h5>
+              <img
+                class="user_profile_img"
+                src="melon.webp"
+                alt="profile_img"
+              />
+            </div>
+            <div class="post_info_right">
+              <div class="info_wrapper">
+                <h5 class="info_label">추천</h5>
+                <h5 class="info_value_blue">0</h5>
+              </div>
+
+              <div class="info_wrapper">
+                <h5 class="info_label">비추천</h5>
+                <h5 class="info_value_red">0</h5>
+              </div>
+
+              <div class="info_wrapper">
+                <h5 class="info_label">댓글</h5>
+                <h5 class="info_value">0</h5>
+              </div>
+
+              <div class="info_wrapper">
+                <h5 class="info_label">작성일</h5>
+                <h5 class="info_value">2023-08-03 18:39:59</h5>
+              </div>
+            </div>
+          </div>
+          <hr class="divider" />
+          <div class="post_link">post link</div>
+          <div class="post_content"></div>
+          <div class="vote_area">
+            <div class="vote_wrapper">
+              <button class="vote_button">
+                <h5 class="vote_button_text">추천!</h5>
+                <h5 class="vote_button_value">0</h5>
+              </button>
+              <button class="vote_button">
+                <h5 class="vote_button_text">비추천!</h5>
+                <h5 class="vote_button_value">0</h5>
+              </button>
+            </div>
+          </div>
+        </div>
+        <script>
+          document
+            .querySelector(".post_content")
+            .insertAdjacentHTML(
+              "afterbegin",
+              "<p>테스트용 initial value입니다</p>"
+            );
+        </script>
+      </div>
+    </div>
+  </body>
+</html>

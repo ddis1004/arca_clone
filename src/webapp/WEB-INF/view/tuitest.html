@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- 보기 편하게 CSS추가해주었습니다. -->
+    <style>
+      * {
+        text-align: center;
+      }
+      #editor {
+        width: 50%;
+        margin: 0 auto;
+      }
+
+      #contents {
+        width: 50%;
+        height: 100px;
+        margin: 30px auto;
+        border: 1px solid;
+      }
+    </style>
+
+    <!-- TOAST UI Editor CDN URL(CSS)-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/codemirror.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css"
+    />
+  </head>
+  <body>
+    <h1>TOAST UI Editor 만들기</h1>
+
+    <!-- TOAST UI Editor가 들어갈 div태그 -->
+    <div id="editor"></div>
+    <!-- !!여기!! 에디터 내용을 받을 div태그-->
+    <div id="contents"></div>
+    <!-- TOAST UI Editor CDN URL(JS) -->
+    <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+
+    <h5>----------------------------------</h5>
+
+    <div id="viewer"></div>
+
+    <!-- TOAST UI Editor 생성 JavaScript 코드 -->
+    <script>
+      const editor = new toastui.Editor({
+        el: document.querySelector("#editor"),
+        previewStyle: "vertical",
+        height: "500px",
+        initialEditType: "wysiwyg",
+        initialValue: "테스트용 initial value입니다",
+        hideModeSwitch: true,
+      });
+    </script>
+    <button type="button" onclick="console.log(editor.getHTML())">
+      Check HTML on Console
+    </button>
+    <button type="button" onclick="console.log(editor)">
+      Check EDITOR on Console
+    </button>
+    <button
+      type="button"
+      onclick="document
+      .querySelector('#contents')
+      .insertAdjacentHTML('afterbegin', editor.getHTML())"
+    >
+      insert on Viewer
+    </button>
+  </body>
+</html>

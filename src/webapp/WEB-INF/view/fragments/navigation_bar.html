@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html
+        xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>no_title</title>
+  </head>
+  <body>
+    <div class="navbar" th:fragment="navigateFragment">
+      <div class="navbar_content_wrapper">
+        <div class="navbar_content_wrapper_left">
+          <img class="logo_img" th:src="@{/resources/img/logo.png}" />
+          <ul class="navbar_list">
+            <li class="navbar_list_item"><a>구독채널</a></li>
+            <li class="navbar_list_item"><a>주요채널</a></li>
+            <li class="navbar_list_item"><a>채널검색</a></li>
+          </ul>
+        </div>
+        <div class="navbar_content_wrapper_right">
+          <form class="search_form">
+            <input type="text" value="search" />
+          </form>
+          <ul class="navbar_indivlist">
+            <li class="navbar_list_item"><a>뉴스</a></li>
+            <li class="navbar_list_item"><a>위키</a></li>
+            <li class="navbar_list_item"><a>알림</a></li>
+            <li class="navbar_list_item"><a>계정명</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+<style></style>

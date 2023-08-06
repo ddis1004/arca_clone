@@ -1,0 +1,30 @@
+.channel_img {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+    }
+    .channel_banner_content_wrapper {
+      padding: auto;
+      width: 1000px;
+    }
+    .channel_banner_left {
+      float: left;
+      margin: 0 10px 0 0;
+    }
+    .channel_banner_right {
+      height: 70px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+    }
+    .channel_banner_right1 {
+      display: flex;
+      justify-content: space-between;
+    }
+    .channel_name {
+      float: left;
+      font-size: large;
+      font-weight: 1000;
+    }
+    .buttons {
+    }
