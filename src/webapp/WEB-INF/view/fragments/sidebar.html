@@ -5,9 +5,9 @@
   </head>
   <body>
     <div class="fragment_wrapper">
-      <div class="sidebar" th:fragment="sidebarFragment">
-        <div class="sidebar_title_area">
-          <h3 class="sidebar_title">사이드바 제목</h3>
+      <div id="sidebar" th:fragment="sidebarFragment">
+        <div id="sidebar_title_area">
+          <h3 id="sidebar_title">사이드바 제목</h3>
         </div>
 
         <div class="sidebar_content_list">
@@ -32,11 +32,54 @@
             <h5 class="sidebar_content_time">08-04 03:04</h5>
           </div>
         </div>
+
+        <style>
+          #sidebar {
+            width: 270px;
+            height: auto;
+            padding: 12px;
+            border: 1px solid grey;
+            border-radius: 5px;
+            background-color: white;
+          }
+          #sidebar #sidebar_title_area {
+            height: 20px;
+          }
+          #sidebar #sidebar_title {
+            font-size: 18px;
+            font-weight: 500;
+            margin: 0px;
+          }
+          #sidebar .sidebar_content_list {
+            margin: 10px 0 0 0;
+            height: auto;
+          }
+          #sidebar .sidebar_content {
+            padding: 0;
+            margin: 5px 0;
+            display: flex;
+            justify-content: space-between;
+            size: auto;
+          }
+          #sidebar .sidebar_content_text {
+            font-size: 14px;
+            margin: 0 auto 0 0;
+          }
+          #sidebar .sidebar_content_time {
+            background-color: #3d414d;
+            color: white;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: 400;
+            padding: 0;
+            margin: 0 0 0 auto;
+            align-items: center;
+            height: 16px;
+          }
+        </style>
       </div>
     </div>
   </body>
 </html>
 
-<style>
-
-</style>
+<style></style>

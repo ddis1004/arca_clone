@@ -1,47 +1,56 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <link th:href="@{/resources/css/navigation_bar.css}" rel="stylesheet">
-    <link th:href="@{/resources/css/channel_banner.css}" rel="stylesheet">
-    <link th:href="@{/resources/css/article.css}" rel="stylesheet">
-    <link th:href="@{/resources/css/sidebar.css}" rel="stylesheet">
-</head>
+  <head>
+    <meta charset="UTF-8" />
+  </head>
 
-<body>
-    <div th:replace="~{/fragments/navigation_bar::navigateFragment}" >NAVIGATION BAR </div>
-    <div class="contents">
-        <div class="content_wrapper">
-            <div th:replace="~{/fragments/channel_banner::channelBannerFragment}"> CHANNEL_BANNER </div>
-            <hr class="bannerDivider" size="1px" color="grey">
-            <div th:replace="~{/fragments/post::postFragment}"> ARTICLE </div>
-        </div>
-        <div class="sidebar_area">
-            <div class="sidebar" th:replace="~{fragments/sidebar::sidebarFragment}"></div>
-        </div>
+  <body>
+    <div th:replace="~{/fragments/navigation_bar::navigateFragment}">
+      NAVIGATION BAR
     </div>
-
-</body>
+    <div id="contents">
+      <div id="content_wrapper">
+        <div th:replace="~{/fragments/channel_banner::channelBannerFragment}">
+          CHANNEL_BANNER
+        </div>
+        <hr class="divider" style="border: solid 1px #e6e6e6" />
+        <div id="post_wrapper">
+          <div th:replace="~{/fragments/post::postFragment}">ARTICLE</div>
+        </div>
+      </div>
+      <div id="sidebar_area">
+        <div
+          class="sidebar"
+          th:replace="~{fragments/sidebar::sidebarFragment}"
+        ></div>
+      </div>
+    </div>
+  </body>
 </html>
 <style>
-    .contents{
-       width: auto;
-       margin: 0 auto;
-       display:flex
-    }
-    .content_wrapper{
-        margin:0 20px 0 auto;
-        width:1000px;
-        background-color: white;
-        border: 0.05rem solid grey;
-        padding:5px;
-        float:left;
-    }
-    .sidebar_area{
-        margin: 20px auto 0 20px;
-        padding: 0;
-    }
-    html{
-        background-color:#e6e6e6;
-    }
+  #post_wrapper {
+    padding: 10px;
+  }
+  #contents {
+    width: auto;
+    margin: 0 auto;
+    display: flex;
+  }
+  #contents #content_wrapper {
+    margin: 0 20px 0 auto;
+    width: 1000px;
+    background-color: white;
+    border: 0.05rem solid grey;
+    float: left;
+  }
+  #sidebar_area {
+    margin: 20px auto 0 20px;
+    padding: 0;
+  }
+  html {
+    background-color: #e6e6e6;
+  }
+  body {
+    margin: 0;
+  }
 </style>

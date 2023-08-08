@@ -4,27 +4,59 @@
     <meta charset="UTF-8" />
   </head>
   <body>
-    <div class="channel_banner" th:fragment="channelBannerFragment">
+    <div id="channel_banner" th:fragment="channelBannerFragment">
       <div class="channel_banner_content_wrapper">
-        <div class="channel_banner_left">
+        <div id="channel_banner_left">
           <img
-            class="channel_img"
+            id="channel_img"
             th:src="@{/resources/img/channel_img_example.webp}"
             alt="channel_img"
           />
         </div>
-        <div class="channel_banner_right">
-          <div class="channel_banner_right1">
-            <div class="channel_name">Channel Name</div>
-            <div class="buttons">Buttons</div>
+        <div id="channel_banner_right">
+          <div id="channel_banner_right1">
+            <div id="channel_name">Channel Name</div>
+            <div id="buttons">Buttons</div>
           </div>
-          <div class="channel_banner_right2">Channel Info</div>
-          <div class="channel_banner_right3">Channel Intro</div>
+          <div id="channel_banner_right2">Channel Info</div>
+          <div id="channel_banner_right3">Channel Intro</div>
         </div>
       </div>
+
+      <style>
+        #channel_banner {
+          padding: 10px;
+        }
+        #channel_banner #channel_img {
+          width: 70px;
+          height: 70px;
+          border-radius: 50%;
+        }
+        #channel_banner #channel_banner_content_wrapper {
+          padding: 10px;
+          width: auto;
+        }
+        #channel_banner #channel_banner_left {
+          float: left;
+          margin: 0 10px 0 0;
+        }
+        #channel_banner #channel_banner_right {
+          height: 70px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-evenly;
+        }
+        #channel_banner #channel_banner_right1 {
+          display: flex;
+          justify-content: space-between;
+        }
+        #channel_banner #channel_name {
+          float: left;
+          font-size: large;
+          font-weight: 1000;
+        }
+      </style>
     </div>
   </body>
-  <style>
-
-  </style>
+  <style></style>
 </html>

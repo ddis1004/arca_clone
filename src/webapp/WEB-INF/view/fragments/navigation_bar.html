@@ -1,26 +1,25 @@
 <!DOCTYPE html>
-<html
-        xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <title>no_title</title>
   </head>
   <body>
-    <div class="navbar" th:fragment="navigateFragment">
-      <div class="navbar_content_wrapper">
-        <div class="navbar_content_wrapper_left">
-          <img class="logo_img" th:src="@{/resources/img/logo.png}" />
-          <ul class="navbar_list">
+    <div id="navbar" th:fragment="navigateFragment">
+      <div id="navbar_content_wrapper">
+        <div id="navbar_content_wrapper_left">
+          <img id="logo_img" th:src="@{/resources/img/logo.png}" />
+          <ul id="navbar_list">
             <li class="navbar_list_item"><a>구독채널</a></li>
             <li class="navbar_list_item"><a>주요채널</a></li>
             <li class="navbar_list_item"><a>채널검색</a></li>
           </ul>
         </div>
-        <div class="navbar_content_wrapper_right">
-          <form class="search_form">
+        <div id="navbar_content_wrapper_right">
+          <form id="search_form">
             <input type="text" value="search" />
           </form>
-          <ul class="navbar_indivlist">
+          <ul id="navbar_indivlist">
             <li class="navbar_list_item"><a>뉴스</a></li>
             <li class="navbar_list_item"><a>위키</a></li>
             <li class="navbar_list_item"><a>알림</a></li>
@@ -28,6 +27,56 @@
           </ul>
         </div>
       </div>
+      <style>
+        #navbar {
+          background-color: #3d414d;
+          color: white;
+          height: 60px;
+          display: flex;
+          align-items: center;
+          padding: auto;
+        }
+        #navbar #logo_img {
+          width: 30px;
+          height: 30px;
+          margin-right: 20px;
+          float: left;
+        }
+        #navbar #navbar_list {
+          size: 30px;
+          margin: 0px;
+          padding: 0px;
+          padding-bottom: 2px;
+          list-style-type: none;
+          display: inline-block;
+        }
+        #navbar #search_form {
+          text-align: center;
+          display: inline-block;
+        }
+        #navbar #navbar_indivlist {
+          size: 30px;
+          margin: 0px;
+          padding: 0px;
+          list-style-type: none;
+          display: inline-block;
+        }
+        #navbar .navbar_list_item {
+          float: left;
+          margin-right: 10px;
+        }
+        #navbar #navbar_content_wrapper {
+          width: 1300px;
+          margin: auto;
+          align-items: center;
+        }
+        #navbar #navbar_content_wrapper_left {
+          float: left;
+        }
+        #navbar #navbar_content_wrapper_right {
+          float: right;
+        }
+      </style>
     </div>
   </body>
 </html>

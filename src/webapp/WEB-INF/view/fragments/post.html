@@ -4,31 +4,35 @@
 
   <body>
     <div class="fragment_wrapper">
-      <div class="post" th:fragment="postFragment">
-        <div class="post_wrapper">
-          <div class="title_wrapper">
+      <div id="post" th:fragment="postFragment">
+        <div id="post_wrapper">
+          <div id="title_wrapper">
             <hr class="divider" />
-            <h4 class="title">TITLE 타이틀</h4>
+            <h4 id="title" th:text="${requested_post.title}">TITLE 타이틀</h4>
             <hr class="divider" />
           </div>
-          <div class="post_info_wrapper">
-            <div class="post_info_left">
-              <h5 class="user_nickname">유저의 닉네임</h5>
-              <img
-                class="user_profile_img"
-                src="melon.webp"
-                alt="profile_img"
-              />
+          <div id="post_info_wrapper">
+            <div id="post_info_left">
+              <h5 id="user_nickname" th:text="${requested_post.userNickname}">
+                유저의 닉네임
+              </h5>
+              <img id="user_profile_img" src="melon.webp" alt="profile_img" />
             </div>
-            <div class="post_info_right">
+            <div id="post_info_right">
               <div class="info_wrapper">
                 <h5 class="info_label">추천</h5>
-                <h5 class="info_value_blue">0</h5>
+                <h5
+                  class="info_value_blue"
+                  th:text="${requested_post.rateUp}"
+                ></h5>
               </div>
 
               <div class="info_wrapper">
                 <h5 class="info_label">비추천</h5>
-                <h5 class="info_value_red">0</h5>
+                <h5
+                  class="info_value_red"
+                  th:text="${requested_post.rateDown}"
+                ></h5>
               </div>
 
               <div class="info_wrapper">
@@ -38,34 +42,145 @@
 
               <div class="info_wrapper">
                 <h5 class="info_label">작성일</h5>
-                <h5 class="info_value">2023-08-03 18:39:59</h5>
+                <h5
+                  class="info_value"
+                  th:text="${#temporals.format(requested_post.timeCreated, 'yyyy-MM-dd HH:mm:ss')}"
+                ></h5>
               </div>
             </div>
           </div>
           <hr class="divider" />
-          <div class="post_link">post link</div>
-          <div class="post_content"></div>
-          <div class="vote_area">
-            <div class="vote_wrapper">
+          <div id="post_link" th:text="${requested_post.id}">post link</div>
+          <div id="post_content"></div>
+          <div id="vote_area">
+            <div id="vote_wrapper">
               <button class="vote_button">
                 <h5 class="vote_button_text">추천!</h5>
-                <h5 class="vote_button_value">0</h5>
+                <h5
+                  class="vote_button_value"
+                  th:text="${requested_post.rateUp}"
+                ></h5>
               </button>
               <button class="vote_button">
                 <h5 class="vote_button_text">비추천!</h5>
-                <h5 class="vote_button_value">0</h5>
+                <h5
+                  class="vote_button_value"
+                  th:text="${requested_post.rateDown}"
+                ></h5>
               </button>
             </div>
           </div>
         </div>
-        <script>
+
+        <script th:inline="javascript">
           document
-            .querySelector(".post_content")
+            .querySelector("#post_content")
             .insertAdjacentHTML(
               "afterbegin",
-              "<p>테스트용 initial value입니다</p>"
+              [[${requested_post.content}]]
             );
         </script>
+
+        <style>
+          #post #title_wrapper {
+            background-color: #e6e6e6;
+          }
+          #post #title {
+            font-size: 18px;
+            font-weight: 400;
+            margin: 6px;
+          }
+          #post #post_info_wrapper {
+            padding: 7px 0px;
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+          }
+          #post #post_info_left {
+            display: flex;
+          }
+          #post #user_nickname {
+            float: right;
+            font-weight: 400;
+            margin: 0;
+          }
+          #post #user_profile_img {
+            width: 14px;
+            height: 14px;
+            float: left;
+            margin: 0px 0px 0px 10px;
+          }
+          #post #post_info_right {
+            display: flex;
+            align-items: center;
+            margin: 0;
+          }
+          #post .info_label {
+            margin: 0 6px 0 0;
+          }
+          #post .info_value_blue {
+            color: blue;
+            font-size: 12px;
+            font-weight: 400;
+            margin: 0 6px 0 0;
+            background-color: #e6e6e6;
+          }
+          #post .info_value_red {
+            color: red;
+            font-size: 12px;
+            font-weight: 400;
+            margin: 0 6px 0 0;
+            background-color: #e6e6e6;
+          }
+          #post .info_value {
+            font-size: 12px;
+            font-weight: 400;
+            margin: 0 6px 0 0;
+            background-color: #e6e6e6;
+          }
+          #post #post_link {
+            text-align: right;
+            font-size: 12px;
+          }
+          #post #vote_area {
+            display: flex;
+          }
+          #post .vote_button {
+            background-color: white;
+            float: left;
+            width: 80px;
+            height: 60px;
+            margin: 0 10px;
+            display: flex;
+            align-items: center;
+            border: 1px solid grey;
+            border-radius: 5px;
+          }
+          #post #vote_wrapper {
+            margin: 0 auto;
+          }
+          #post .vote_button_value {
+            font-size: 14px;
+            font-weight: 500;
+            margin: 0 auto;
+            float: right;
+          }
+          #post .vote_button_text {
+            font-size: 14px;
+            font-weight: 500;
+            margin: 0 auto;
+          }
+          .divider {
+            size: 1px;
+            color: grey;
+            margin: 0;
+          }
+          #post .info_wrapper {
+            display: flex;
+            border-right: 1px solid grey;
+            margin: 0 3px 0 0;
+          }
+        </style>
       </div>
     </div>
   </body>

@@ -2,10 +2,6 @@
 <html xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
-    <link th:href="@{/resources/css/navigation_bar.css}" rel="stylesheet" />
-    <link th:href="@{/resources/css/channel_banner.css}" rel="stylesheet" />
-    <link th:href="@{/resources/css/sidebar.css}" rel="stylesheet" />
-    <link th:href="@{/resources/css/post_writer}" rel="stylesheet" />
   </head>
 
   <body>
@@ -14,13 +10,17 @@
     </div>
     <div class="contents">
       <div class="content_wrapper">
+
         <div th:replace="~{/fragments/channel_banner::channelBannerFragment}">
           CHANNEL_BANNER
         </div>
-        <hr class="bannerDivider" size="1px" color="grey" />
-        <div th:replace="~{/fragments/post_writer::writerFragment}">
+        <hr class="divider" style="border: solid 1px #e6e6e6">
+        <div id="writer_wrapper">
+          <div th:replace="~{/fragments/post_writer::writerFragment}">
           ARTICLE
+          </div>
         </div>
+
       </div>
       <div class="sidebar_area">
         <div
@@ -32,6 +32,12 @@
   </body>
 </html>
 <style>
+  body{
+    margin: 0;
+  }
+  #writer_wrapper{
+    padding: 15px;
+  }
   .contents {
     width: auto;
     margin: 0 auto;
@@ -39,8 +45,7 @@
   }
   .content_wrapper {
     margin: 0 20px 0 auto;
-    max-width: 1000px;
-    padding: 20px;
+    width: 1000px;
     background-color: white;
     border: 0.05rem solid grey;
     float: left;
