@@ -15,6 +15,16 @@ public class Post {
     int rateDown;
     int viewCount;
     boolean best;
+    boolean containsImage;
+
+    public boolean isContainsImage() {
+        return containsImage;
+    }
+
+    public void setContainsImage(boolean containsImage) {
+        this.containsImage = containsImage;
+    }
+
     int categoryId;
 
     public int getId() {

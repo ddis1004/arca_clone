@@ -16,7 +16,11 @@
               <h5 id="user_nickname" th:text="${requested_post.userNickname}">
                 유저의 닉네임
               </h5>
-              <img id="user_profile_img" src="melon.webp" alt="profile_img" />
+              <img
+                id="user_profile_img"
+                th:src="@{/resources/img/user/} + ${user_profile_image}"
+                alt="profile_img"
+              />
             </div>
             <div id="post_info_right">
               <div class="info_wrapper">
@@ -51,6 +55,14 @@
           </div>
           <hr class="divider" />
           <div id="post_link" th:text="${requested_post.id}">post link</div>
+          <div
+            id="default_img_area"
+            th:unless="${requested_post.containsImage}"
+          >
+            <img
+              th:src="@{/resources/img/channel/default/} + ${requested_channel.default_image}"
+            />
+          </div>
           <div id="post_content"></div>
           <div id="vote_area">
             <div id="vote_wrapper">
@@ -141,6 +153,10 @@
           #post #post_link {
             text-align: right;
             font-size: 12px;
+          }
+          #post #default_img_area {
+            max-width: 900px;
+            max-height: 400px;
           }
           #post #vote_area {
             display: flex;

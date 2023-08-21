@@ -33,6 +33,7 @@ public class PostDaoJdbc implements PostDao{
             post.setRateDown(resultSet.getInt("rate_down"));
             post.setViewCount(resultSet.getInt("view_count"));
             post.setBest(resultSet.getBoolean("best"));
+            post.setContainsImage(resultSet.getBoolean("contains_image"));
             post.setCategoryId(resultSet.getInt("category_id"));
             return post;
         }
@@ -41,10 +42,10 @@ public class PostDaoJdbc implements PostDao{
     @Override
     public void add(Post post) {
         this.jdbcTemplate.update("insert into post(id, user_number, user_nickname, time_created, " +
-                        "title, content, rate_up, rate_down, view_count, best, category_id) " +
-                        "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                        "title, content, rate_up, rate_down, view_count, best, category_id, contains_image) " +
+                        "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 post.getId(), post.getUserNumber().toString(), post.getUserNickname(), post.getTimeCreated(),
-                post.getTitle(), post.getContent(), post.getRateUp(), post.getRateDown(), post.getViewCount(), post.isBest(), post.getCategoryId());
+                post.getTitle(), post.getContent(), post.getRateUp(), post.getRateDown(), post.getViewCount(), post.isBest(), post.getCategoryId(), post.isContainsImage());
     }
 
     @Override
@@ -67,10 +68,10 @@ public class PostDaoJdbc implements PostDao{
     public void updatePost(Post post) {
         jdbcTemplate.update("update post set " +
                 "user_number = ?, user_nickname = ?, time_created = ?, title = ?, content = ?," +
-                "rate_up = ?, rate_down = ?, view_count = ?, best = ?, category_id = ? " +
+                "rate_up = ?, rate_down = ?, view_count = ?, best = ?, category_id = ? , contains_image = ? "+
                 "where id = ?",
                 post.getUserNumber().toString(), post.getUserNickname(), post.getTimeCreated(), post.getTitle(), post.getContent(),
-                post.getRateUp(), post.getRateDown(), post.getViewCount(), post.isBest(), post.getCategoryId(),
+                post.getRateUp(), post.getRateDown(), post.getViewCount(), post.isBest(), post.getCategoryId(), post.isContainsImage(),
                 post.getId());
     }
 

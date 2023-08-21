@@ -1,6 +1,6 @@
 package test;
 
-import configuration.ControllerConfig;
+import configuration.BoardConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {ControllerConfig.class})
+@ContextConfiguration(classes = {BoardConfig.class})
 public class ViewTest {
 
     @Autowired

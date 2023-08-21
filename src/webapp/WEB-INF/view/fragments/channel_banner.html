@@ -8,18 +8,25 @@
       <div class="channel_banner_content_wrapper">
         <div id="channel_banner_left">
           <img
-            id="channel_img"
-            th:src="@{/resources/img/channel_img_example.webp}"
+            id="channel_icon"
+            th:src="@{/resources/img/channel/icon/} + ${requested_channel.icon_image}"
             alt="channel_img"
           />
         </div>
         <div id="channel_banner_right">
           <div id="channel_banner_right1">
-            <div id="channel_name">Channel Name</div>
+            <div id="channel_name" th:text="${requested_channel.name}">
+              Channel Name
+            </div>
             <div id="buttons">Buttons</div>
           </div>
           <div id="channel_banner_right2">Channel Info</div>
-          <div id="channel_banner_right3">Channel Intro</div>
+          <div
+            id="channel_banner_right3"
+            th:text="${requested_channel.introduction}"
+          >
+            Channel Intro
+          </div>
         </div>
       </div>
 
@@ -27,7 +34,7 @@
         #channel_banner {
           padding: 10px;
         }
-        #channel_banner #channel_img {
+        #channel_banner #channel_icon {
           width: 70px;
           height: 70px;
           border-radius: 50%;

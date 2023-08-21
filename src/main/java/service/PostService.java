@@ -1,16 +1,16 @@
 package service;
 
-import dao.PostDao;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import dao.CategoryList;
+import dao.Channel;
+import dao.Post;
 
-@Service
-public class PostService {
+import java.util.List;
+import java.util.Map;
 
-    @Autowired
-    PostDao postDao;
+public interface PostService {
 
-    public void postView(){
-
-    }
+    public Channel getChannel(String slug);
+    public Post getPost(int id);
+    public CategoryList getCategoryList(String slug, String currentSelected);
+    public List<SimplifiedPostInfo> getPostListData(Map<String, String> listparam);
 }

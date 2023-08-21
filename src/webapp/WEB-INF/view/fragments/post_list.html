@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <div id="post_list_fragment" th:fragment="postListFragment">
+      <div id="category_menu">
+        <div id="category_wrapper">
+          <span
+            class="category_item"
+            th:each="category,i: ${category_list.categoryList}"
+          >
+            <a
+              th:class="item_+ ${category_list.selected eq i.index ? 'active' : 'inactive'}"
+              th:text="${category}"
+            ></a>
+          </span>
+          <div id="dummy"></div>
+        </div>
+      </div>
+      <div id="list_table">
+        <div id="table_label">
+          <div class="table_inner">
+            <div class="post_id">번호</div>
+            <div class="title">제목</div>
+            <div class="nickname">닉네임</div>
+            <div class="time_created">작성시간</div>
+            <div class="view_count">조회수</div>
+            <div class="rating">추천수</div>
+          </div>
+        </div>
+        <div class="list_table_block" th:each="post: ${post_list_data}">
+          <a class="table_content">
+            <div class="table_inner">
+              <div class="post_id" th:text="${post.id}"></div>
+              <div
+                class="title"
+                th:text="${post.title} + [ + ${post.commentCount} + ]"
+              ></div>
+              <div class="nickname" th:text="${post.nickname}"></div>
+              <div
+                class="time_created"
+                th:text="${#temporals.format(requested_post.timeCreated, 'HH:mm')}"
+              ></div>
+              <div class="view_count" th:text="${post.viewCount}"></div>
+              <div class="rating" th:text="${post.rating}"></div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div id="button_area">
+        <div id="button_area_left">
+          <button class="navigate_button">&#128196; 전체글</button>
+          <button class="best_post_button">★개념글</button>
+          <select
+            class="dropdown_form"
+            name="sort_method"
+            onchange="this.form.submit()"
+          >
+            <option value="time">등록순</option>
+            <option value="rating24h">추천순(24시간)</option>
+            <option value="rating3d">추천순(3일)</option>
+            <option value="ratingall">추천순(전체)</option>
+            <option value="comment3d">댓글갯수순(3일)</option>
+            <option value="commentall">최근댓글순</option>
+          </select>
+          <select
+            class="dropdown_form"
+            name="rating_cut"
+            onchange="this.form.submit()"
+          >
+            <option value="none">추천순</option>
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+            <option value="50">50</option>
+            <option value="70">70</option>
+            <option value="100">100</option>
+          </select>
+        </div>
+        <div id="button_area_right">
+          <button class="navigate_button">&#128221; 글쓰기</button>
+        </div>
+      </div>
+      <form id="search_area" action="/b/${requested_channel}">
+        <select class="dropdown_form" name="search_mode">
+          <option value="all">전체</option>
+          <option value="title">제목</option>
+          <option value="nickname">글쓴이</option>
+          <option value="comment">댓글</option>
+        </select>
+        <input id="search_word_input" type="text" name="keyword" />
+        <button class="navigate_button" type="submit">검색</button>
+      </form>
+      <div
+        id="pagination_area"
+        th:with="start = ${page_start} , end = start + 1"
+      >
+        <a th:if="${start} > 5" class="page_button"> &#60;&#60; </a>
+        <a th:if="${start} > 5" class="page_button"> &#60;</a>
+        <h5 th:text="${start}"></h5>
+      </div>
+
+      <style>
+        #post_list_fragment #category_menu {
+          padding: 2px;
+          height: auto;
+          overflow: auto;
+          white-space: nowrap;
+        }
+        #post_list_fragment #category_menu #category_wrapper {
+          display: flex;
+        }
+        #post_list_fragment #category_menu .category_item {
+          display: flex;
+          border: 0px;
+        }
+        #post_list_fragment #category_menu .category_item::before {
+          border-bottom: 1px solid grey;
+          content: "";
+          width: 4px;
+        }
+        #post_list_fragment #category_menu .category_item::after {
+          border-bottom: 1px solid grey;
+          content: "";
+          width: 4px;
+        }
+        #post_list_fragment
+          #category_menu
+          .category_item
+          .item_inactive::before {
+          content: "";
+          width: 4px;
+        }
+        #post_list_fragment
+          #category_menu
+          .category_item
+          .item_inactive::after {
+          content: "";
+          width: 4px;
+        }
+        #post_list_fragment #category_menu .category_item .item_active::before {
+          content: "";
+          width: 4px;
+        }
+        #post_list_fragment #category_menu .category_item .item_active::after {
+          content: "";
+          width: 4px;
+        }
+        #post_list_fragment #category_menu .category_item .item_active {
+          display: flex;
+          border-radius: 3px;
+          border-top: 1px solid grey;
+          border-left: 1px solid grey;
+          border-right: 1px solid grey;
+          border-bottom: 1px solid white;
+        }
+        #post_list_fragment #category_menu .category_item .item_inactive {
+          display: flex;
+          border-bottom: 1px solid grey;
+        }
+        #post_list_fragment #category_menu #dummy {
+          display: flex;
+          flex: 1 0 auto;
+          border-bottom: 1px solid grey;
+        }
+        #post_list_fragment #list_table .list_table_block {
+          border-top: 1px solid white;
+          border-bottom: 1px solid #bbb;
+        }
+        #post_list_fragment #list_table #table_label {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          border-bottom: 1px solid #bbb;
+        }
+        #post_list_fragment #list_table .table_inner {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          margin: 3px 0;
+        }
+        #post_list_fragment #list_table .table_content {
+          display: flex;
+          justify-content: center;
+          font-size: 15px;
+          padding: 1px 0;
+        }
+        #post_list_fragment #list_table .post_id {
+          width: 10%;
+          text-align: center;
+        }
+        #post_list_fragment #list_table .title {
+          width: 59%;
+        }
+        #post_list_fragment #list_table .nickname {
+          width: 15%;
+          text-align: center;
+        }
+        #post_list_fragment #list_table .time_created {
+          width: 10%;
+          text-align: center;
+        }
+        #post_list_fragment #list_table .view_count {
+          width: 8%;
+          text-align: center;
+        }
+        #post_list_fragment #list_table .rating {
+          width: 8%;
+          text-align: center;
+        }
+        #post_list_fragment #button_area {
+          display: flex;
+          justify-content: space-between;
+          margin-top: 20px;
+        }
+        #post_list_fragment #button_area_left {
+          display: flex;
+          align-items: start;
+        }
+        #post_list_fragment #search_area {
+          margin: 16px 0px;
+          display: flex;
+          justify-content: flex-end;
+        }
+        #post_list_fragment .navigate_button {
+          border-radius: 0;
+          border: 1px solid #bbb;
+          background-color: white;
+          width: auto;
+          height: 30px;
+        }
+        #post_list_fragment .best_post_button {
+          border-radius: 0;
+          border: 1px solid #bbb;
+          width: auto;
+          height: 30px;
+          background-color: #dc3545;
+          color: white;
+        }
+        #post_list_fragment .dropdown_form {
+          border-radius: 0;
+          border: 1px solid #bbb;
+          height: 30px;
+          width: auto;
+        }
+        #post_list_fragment #search_word_input {
+          border-radius: 0;
+          border: 1px solid #bbb;
+          width: 170px;
+          height: 26px;
+        }
+      </style>
+    </div>
+  </body>
+</html>

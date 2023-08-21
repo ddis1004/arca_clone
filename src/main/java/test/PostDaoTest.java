@@ -1,6 +1,5 @@
 package test;
 
-import configuration.ControllerConfig;
 import dao.Post;
 import dao.PostDaoJdbc;
 import org.junit.Before;
@@ -35,7 +34,7 @@ public class PostDaoTest {
         post3 = makeTestPost(3, "TEST_NICKNAME_3");
     }
 
-    private Post makeTestPost(int number, String nickname){
+    public static Post makeTestPost(int number, String nickname){
         Post post = new Post();
         post.setId(number);
         post.setTimeCreated(LocalDateTime.now());
@@ -48,6 +47,7 @@ public class PostDaoTest {
         post.setViewCount(0);
         post.setBest(false);
         post.setCategoryId(0);
+        post.setContainsImage(false);
         return post;
     }
 
@@ -63,7 +63,7 @@ public class PostDaoTest {
         assertThat(postDao.getCount(), is(3));
     }
 
-    public boolean isPostEqual(Post post1, Post post2){
+    public static boolean isPostEqual(Post post1, Post post2){
         if(post1.getId() == post2.getId() && post1.getCategoryId() == post2.getCategoryId()
                 && post1.getRateUp() == post2.getRateUp() && post1.getRateDown() == post2. getRateDown()
                 && post1.getViewCount() == post2.getViewCount() && post1.isBest() == post2.isBest()

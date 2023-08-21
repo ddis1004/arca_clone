@@ -17,14 +17,15 @@
         <div id="post_wrapper">
           <div th:replace="~{/fragments/post::postFragment}">ARTICLE</div>
         </div>
+        <div th:replace="~{/fragments/post_list::postListFragment}">
+          POSTLIST
+        </div>
       </div>
       <div id="sidebar_area">
-        <div
-          class="sidebar"
-          th:replace="~{fragments/sidebar::sidebarFragment}"
-        ></div>
+        <div th:replace="~{fragments/sidebar::sidebarFragment}"></div>
       </div>
     </div>
+    <footer id="license_bar">LICENSE THINGS</footer>
   </body>
 </html>
 <style>
@@ -41,11 +42,21 @@
     width: 1000px;
     background-color: white;
     border: 0.05rem solid grey;
+    padding: 0px 20px;
     float: left;
   }
   #sidebar_area {
     margin: 20px auto 0 20px;
     padding: 0;
+  }
+  #license_bar {
+    border-top: 1px grey solid;
+    width: auto;
+    font-size: 16px;
+    text-align: center;
+    height: 90px;
+    display: flex;
+    background-color: white;
   }
   html {
     background-color: #e6e6e6;
