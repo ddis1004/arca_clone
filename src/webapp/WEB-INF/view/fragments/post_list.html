@@ -41,7 +41,7 @@
               <div class="nickname" th:text="${post.nickname}"></div>
               <div
                 class="time_created"
-                th:text="${#temporals.format(requested_post.timeCreated, 'HH:mm')}"
+                th:text="${#temporals.format(post.timeCreated, 'HH:mm')}"
               ></div>
               <div class="view_count" th:text="${post.viewCount}"></div>
               <div class="rating" th:text="${post.rating}"></div>
@@ -94,13 +94,27 @@
         <input id="search_word_input" type="text" name="keyword" />
         <button class="navigate_button" type="submit">검색</button>
       </form>
-      <div
-        id="pagination_area"
-        th:with="start = ${page_start} , end = start + 1"
-      >
-        <a th:if="${start} > 5" class="page_button"> &#60;&#60; </a>
-        <a th:if="${start} > 5" class="page_button"> &#60;</a>
-        <h5 th:text="${start}"></h5>
+      <div id="pagination_area" th:with="start = ${page_start}">
+        <ul id="pagination_list">
+          <li class="list_item" th:if="${start} > 5">
+            <a class="list_link"> &#60;&#60; </a>
+          </li>
+          <li class="list_item" th:if="${start} > 5">
+            <a class="list_link"> &#60;</a>
+          </li>
+          <li
+            class="list_item"
+            th:each="page: ${#numbers.sequence(start, start  + 9)}"
+          >
+            <a
+              th:text="${page}"
+              href="/b/${requested_channel}/"
+              class="list_link"
+            ></a>
+          </li>
+          <li class="list_item"><a class="list_link"> &#62; </a></li>
+          <li class="list_item"><a class="list_link"> &#62;&#62; </a></li>
+        </ul>
       </div>
 
       <style>
@@ -251,6 +265,29 @@
           border: 1px solid #bbb;
           width: 170px;
           height: 26px;
+        }
+        #post_list_fragment #pagination_area {
+          display: flex;
+          align-items: center;
+          justify-content: space-around;
+        }
+        #post_list_fragment #pagination_list {
+          list-style: none;
+        }
+        #post_list_fragment #pagination_list .list_item {
+          border: 1px solid #bbb;
+          height: 30px;
+          width: 30px;
+          float: left;
+          align-items: center;
+        }
+        #post_list_fragment #pagination_list .list_link {
+          display: inline-block;
+          width: 28px;
+          height: 28px;
+          text-decoration-line: none;
+          text-align: center;
+          color: black;
         }
       </style>
     </div>

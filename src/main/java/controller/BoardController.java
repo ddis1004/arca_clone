@@ -45,6 +45,7 @@ public class BoardController {
         listparam.put("page", page);
         listparam.put("searchWord", keyword);
         listparam.put("category", category);
+        int startpage = Integer.parseInt(page) - 4 > 0 ? Integer.parseInt(page) : 1;
 
         List<SimplifiedPostInfo> postListData = postService.getPostListData(listparam);
         model.addAttribute("user_profile_image", "default_user_profile.png");
@@ -52,9 +53,31 @@ public class BoardController {
         model.addAttribute("requested_channel", channel);
         model.addAttribute("category_list", categoryList);
         model.addAttribute("post_list_data", postListData);
-        int startpage = Integer.parseInt(page) - 4 > 0 ? Integer.parseInt(page) : 1;
+
         model.addAttribute("page_start", startpage);
         return "post_view";
+    }
+
+    @GetMapping("/{channel_name}/")
+    public String viewBoard(@PathVariable("channel_name") String channelName,
+                            @RequestParam(value="p", required=false, defaultValue="1") String page, @RequestParam(value="keyword", required=false)String keyword,
+                            @RequestParam(value="category", required = false)String category, Model model){
+
+        Channel channel = postService.getChannel(channelName);
+        CategoryList categoryList = postService.getCategoryList(channelName, category);
+        HashMap<String, String> listparam = new HashMap<String,String>();
+        listparam.put("page", page);
+        listparam.put("searchWord", keyword);
+        listparam.put("category", category);
+        int startpage = Integer.parseInt(page) - 4 > 0 ? Integer.parseInt(page) : 1;
+
+        List<SimplifiedPostInfo> postListData = postService.getPostListData(listparam);
+        model.addAttribute("requested_channel", channel);
+        model.addAttribute("category_list", categoryList);
+        model.addAttribute("post_list_data", postListData);
+
+        model.addAttribute("page_start", startpage);
+        return "board";
     }
 
 }
