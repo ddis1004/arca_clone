@@ -1,6 +1,6 @@
 package service;
 
-import dao.CategoryList;
+import dao.CategoryListModel;
 import dao.Channel;
 import dao.Post;
 
@@ -11,6 +11,6 @@ public interface PostService {
 
     public Channel getChannel(String slug);
     public Post getPost(int id);
-    public CategoryList getCategoryList(String slug, String currentSelected);
+    public CategoryListModel getCategoryList(String slug, String currentSelected);
     public List<SimplifiedPostInfo> getPostListData(Map<String, String> listparam);
 }

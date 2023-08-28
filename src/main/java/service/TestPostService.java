@@ -1,6 +1,6 @@
 package service;
 
-import dao.CategoryList;
+import dao.CategoryListModel;
 import dao.Channel;
 import dao.Post;
 
@@ -9,13 +9,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static test.ChannelDaoTest.makeTestChannel;
+
 import static test.PostDaoTest.makeTestPost;
 
 public class TestPostService implements PostService{
     @Override
     public Channel getChannel(String slug) {
-        return makeTestChannel(1, slug + " channel");
+        Channel channel = new Channel();
+        channel.setName(slug);
+        channel.setSlug(slug+"_slug");
+        channel.setMinRecommend(10);
+        channel.setIconImage("icon_file_name");
+        channel.setDefaultImage("default_image_name");
+        channel.setIntroduction("An introduction to channel"+ slug);
+        return channel;
     }
 
     @Override
@@ -24,7 +31,7 @@ public class TestPostService implements PostService{
     }
 
     @Override
-    public CategoryList getCategoryList(String slug, String currentSelected) {
+    public CategoryListModel getCategoryList(String slug, String currentSelected) {
         List<String> nameList = new ArrayList<String>();
         nameList.add("공지");
         nameList.add("잡담");
@@ -32,7 +39,7 @@ public class TestPostService implements PostService{
         nameList.add("가나");
         nameList.add("다라");
         nameList.add("마바");
-        CategoryList categoryList = new CategoryList(nameList);
+        CategoryListModel categoryList = new CategoryListModel(nameList);
         categoryList.setSelected(3);
         return categoryList;
     }

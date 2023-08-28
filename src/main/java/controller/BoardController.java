@@ -1,6 +1,6 @@
 package controller;
 
-import dao.CategoryList;
+import dao.CategoryListModel;
 import dao.Channel;
 import dao.Post;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,17 +10,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import service.PostService;
 import service.SimplifiedPostInfo;
 
-import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
-import java.util.UUID;
-
-import static test.ChannelDaoTest.makeTestChannel;
-import static test.PostDaoTest.makeTestPost;
 
 @Controller
 @RequestMapping("/b")
@@ -40,7 +34,7 @@ public class BoardController {
                            @RequestParam(value="category", required = false)String category, Model model) {
         Post post = postService.getPost(postId);
         Channel channel = postService.getChannel(channelName);
-        CategoryList categoryList = postService.getCategoryList(channelName, category);
+        CategoryListModel categoryList = postService.getCategoryList(channelName, category);
         HashMap<String, String> listparam = new HashMap<String,String>();
         listparam.put("page", page);
         listparam.put("searchWord", keyword);
@@ -64,7 +58,7 @@ public class BoardController {
                             @RequestParam(value="category", required = false)String category, Model model){
 
         Channel channel = postService.getChannel(channelName);
-        CategoryList categoryList = postService.getCategoryList(channelName, category);
+        CategoryListModel categoryList = postService.getCategoryList(channelName, category);
         HashMap<String, String> listparam = new HashMap<String,String>();
         listparam.put("page", page);
         listparam.put("searchWord", keyword);

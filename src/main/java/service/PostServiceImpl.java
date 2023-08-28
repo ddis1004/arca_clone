@@ -1,26 +1,42 @@
 package service;
 
-import dao.CategoryList;
-import dao.Channel;
-import dao.Post;
+import dao.*;
 
 import java.util.List;
 import java.util.Map;
 
 public class PostServiceImpl implements PostService {
+
+    PostDao postDao;
+    ChannelDao channelDao;
+
     @Override
     public Channel getChannel(String slug) {
-        return null;
+        return channelDao.getChannel(slug);
     }
 
     @Override
     public Post getPost(int id) {
-        return null;
+        return postDao.searchById(id);
     }
 
     @Override
-    public CategoryList getCategoryList(String slug, String currentSelected) {
-        return null;
+    public CategoryListModel getCategoryList(String slug, String currentSelected) {
+
+        List<String> nameList = channelDao.getCategoryNames(slug);
+        nameList.add(0, "전체");
+        CategoryListModel  categoryList = new CategoryListModel(nameList);
+
+        categoryList.setSelected(0);
+        if(currentSelected != null){
+            for(int i = 0; i < nameList.size(); i++){
+                if(nameList.get(i).equals(currentSelected)){
+                    categoryList.setSelected(i);
+                    break;
+                }
+            }
+        }
+        return categoryList;
     }
 
     @Override

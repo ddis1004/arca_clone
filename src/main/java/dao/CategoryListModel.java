@@ -2,11 +2,11 @@ package dao;
 
 import java.util.List;
 
-public class CategoryList {
+public class CategoryListModel {
     List<String> categoryList;
     int selected;
 
-    public CategoryList(List<String> categoryList) {
+    public CategoryListModel(List<String> categoryList) {
         this.categoryList = categoryList;
     }
 
